@@ -3,7 +3,7 @@ import { formatSeconds } from '../lib/scoring.js';
 
 export default function ResultScreen({ result, challenge, onPlayAgain, onChangeLevel, onLeaderboard }) {
   async function shareResult() {
-    const text = `I scored ${result.score} in Nonsuch Perfect Pour. Can you beat me? https://nonsuchgame.netlify.app`;
+    const text = `I scored ${result.score} in Nonsuch Perfect Pour. Can you beat me? https://mickhailov.github.io/nonsuch-perfect-pour/`;
     if (navigator.share) {
       await navigator.share({ title: 'Nonsuch Perfect Pour', text });
       return;
