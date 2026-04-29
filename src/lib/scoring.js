@@ -2,6 +2,8 @@ export const PERFECT_BEER_RANGE = [82, 88];
 export const PERFECT_FOAM_RANGE = [8, 14];
 export const MAX_GAME_SECONDS = 18;
 
+const baseUrl = import.meta.env.BASE_URL || '/';
+
 export const CHALLENGES = [
   {
     id: 'hazy-ipa',
@@ -9,7 +11,7 @@ export const CHALLENGES = [
     beerName: 'Hazy IPA',
     difficulty: 'Easy',
     speedLabel: 'Very Slow Pour',
-    image: '/assets/hazy-ipa-can.webp',
+    image: baseUrl + 'assets/hazy-ipa-can.webp',
     beerColor: '#d98b18',
     beerLight: '#f2b84d',
     beerDark: '#9d4f08',
@@ -24,7 +26,7 @@ export const CHALLENGES = [
     beerName: 'Raspberry Sour',
     difficulty: 'Medium',
     speedLabel: 'Moderate Pour',
-    image: '/assets/raspberry-sour-can.webp',
+    image: baseUrl + 'assets/raspberry-sour-can.webp',
     beerColor: '#b8263d',
     beerLight: '#dc5a67',
     beerDark: '#76111f',
@@ -39,7 +41,7 @@ export const CHALLENGES = [
     beerName: 'Baltic Porter',
     difficulty: 'Hard',
     speedLabel: 'Very Fast Pour',
-    image: '/assets/baltic-porter-can.webp',
+    image: baseUrl + 'assets/baltic-porter-can.webp',
     beerColor: '#6f3717',
     beerLight: '#9d5b2a',
     beerDark: '#2b1207',
