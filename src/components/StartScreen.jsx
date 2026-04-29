@@ -98,7 +98,7 @@ export default function StartScreen({ challenges, selectedChallenge, onSelectCha
       <footer className="mx-auto grid max-w-sm gap-2 text-sm leading-relaxed text-charcoal/65">
         <p>Proudly pouring in Winnipeg, Manitoba</p>
         <p>For promotional entertainment only. No alcohol purchase required.</p>
-        <p className="text-xs text-charcoal/45">v0.2.0</p>
+        <p className="text-xs text-charcoal/45">v0.3.0</p>
       </footer>
     </section>
   );
