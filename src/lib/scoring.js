@@ -71,26 +71,27 @@ export function getRating(score) {
 
 export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challenge = {}) {
   const beerTargetRange = challenge.beerTargetRange || PERFECT_BEER_RANGE;
-  const overflow = beerLevel + foamLevel > 100 || beerLevel > 96;
+  const totalPoured = beerLevel + foamLevel;
 
-  if (overflow) {
+  if (totalPoured > 90) {
     return {
       score: 0,
       rating: 'Overflow Fail',
       overflow: true,
       beerAccuracy: 0,
       foamAccuracy: 0,
+      canLeftAccuracy: 0,
       timeBonus: 0,
     };
   }
 
-  const canPoured = beerLevel + foamLevel;
-  const beerAccuracy = rangeAccuracy(beerLevel, beerTargetRange, 24);
-  const foamAccuracy = rangeAccuracy(foamLevel, PERFECT_FOAM_RANGE, 12);
-  const canAccuracy = canPoured < 72 ? 0 : Math.min(1, (canPoured - 72) / 25);
+  const canLeft = Math.max(0, 100 - totalPoured);
+  const beerAccuracy = rangeAccuracy(beerLevel, beerTargetRange, 20);
+  const foamAccuracy = rangeAccuracy(foamLevel, PERFECT_FOAM_RANGE, 10);
+  const canLeftAccuracy = 1 - Math.min(1, canLeft / 50);
   const timeBonus = Math.max(0, 1 - elapsedSeconds / (MAX_GAME_SECONDS * 0.7));
 
-  const score = beerAccuracy * 28 + foamAccuracy * 16 + canAccuracy * 40 + timeBonus * 16;
+  const score = (beerAccuracy + foamAccuracy + canLeftAccuracy + timeBonus) / 4 * 100;
   const roundedScore = Math.max(0, Math.min(100, Math.round(score)));
 
   return {
@@ -99,6 +100,7 @@ export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challen
     overflow: false,
     beerAccuracy,
     foamAccuracy,
+    canLeftAccuracy,
     timeBonus,
   };
 }
