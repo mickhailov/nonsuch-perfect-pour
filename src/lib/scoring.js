@@ -80,18 +80,17 @@ export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challen
       overflow: true,
       beerAccuracy: 0,
       foamAccuracy: 0,
-      canLeftAccuracy: 0,
+      fillAccuracy: 0,
       timeBonus: 0,
     };
   }
 
-  const canLeft = Math.max(0, 100 - totalPoured);
   const beerAccuracy = rangeAccuracy(beerLevel, beerTargetRange, 20);
   const foamAccuracy = rangeAccuracy(foamLevel, PERFECT_FOAM_RANGE, 10);
-  const canLeftAccuracy = 1 - Math.min(1, canLeft / 50);
+  const fillAccuracy = Math.min(1, totalPoured / 100);
   const timeBonus = Math.max(0, 1 - elapsedSeconds / (MAX_GAME_SECONDS * 0.7));
 
-  const score = (beerAccuracy + foamAccuracy + canLeftAccuracy + timeBonus) / 4 * 100;
+  const score = (beerAccuracy * 0.25 + foamAccuracy * 0.25 + fillAccuracy * 0.4 + timeBonus * 0.1) * 100;
   const roundedScore = Math.max(0, Math.min(100, Math.round(score)));
 
   return {
@@ -100,7 +99,7 @@ export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challen
     overflow: false,
     beerAccuracy,
     foamAccuracy,
-    canLeftAccuracy,
+    fillAccuracy,
     timeBonus,
   };
 }
