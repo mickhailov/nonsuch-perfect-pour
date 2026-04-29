@@ -73,7 +73,7 @@ export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challen
   const beerTargetRange = challenge.beerTargetRange || PERFECT_BEER_RANGE;
   const totalPoured = beerLevel + foamLevel;
 
-  if (totalPoured > 90) {
+  if (totalPoured > 98) {
     return {
       score: 0,
       rating: 'Overflow Fail',
