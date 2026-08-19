@@ -54,7 +54,7 @@ export default function Leaderboard({ result, challenge, onPlayAgain, onBack }) 
       <div className="mx-auto grid w-full max-w-3xl gap-5">
         <header className="text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold">
-            125 Pacific Ave. Taproom Challenge
+            Veldra Taproom Challenge
           </p>
           <h1 className="mt-2 font-display text-5xl font-semibold">Leaderboard</h1>
           <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/60">
@@ -94,7 +94,7 @@ export default function Leaderboard({ result, challenge, onPlayAgain, onBack }) 
               <span className="min-w-0">
                 <strong className="block truncate text-lg">{entry.name}</strong>
                 <small className="block truncate text-charcoal/60">
-                  {entry.challengeName} · {formatSeconds(entry.elapsedSeconds)}
+                  {entry.challengeName ? `${entry.challengeName} · ` : ''}{formatSeconds(entry.elapsedSeconds)}
                 </small>
               </span>
               <span className="text-2xl font-semibold tabular-nums">{entry.score}</span>

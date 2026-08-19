@@ -1,4 +1,4 @@
-# Nonsuch Perfect Pour
+# Veldra Perfect Pour
 
 A mobile-first HTML5 contest-style pour game built with React, Vite, Tailwind CSS, localStorage, and CSS/SVG-style placeholder artwork.
 
@@ -51,13 +51,13 @@ The MVP uses CSS artwork for the logo mark, can, and glass so it has no external
 To use real brand assets:
 
 1. Add files to `public/assets/`, for example:
-   - `public/assets/nonsuch-logo.png`
-   - `public/assets/la-pils-can.png`
+   - `public/assets/veldra-logo.png`
+   - `public/assets/sunfall-haze-can.png`
    - `public/assets/glass.png`
 2. Replace the placeholder markup in:
    - `src/components/BrandMark.jsx`
    - `src/components/Glass.jsx`
-3. Reference public assets with paths like `/assets/nonsuch-logo.png`.
+3. Reference public assets with paths like `/assets/veldra-logo.png`.
 4. Keep image sizes responsive and optimize files before deployment.
 
 ## Leaderboard Notes

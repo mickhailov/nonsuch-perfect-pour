@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Glass from './Glass.jsx';
-import { calculateScore, formatSeconds, MAX_GAME_SECONDS } from '../lib/scoring.js';
+import { calculateScore, formatSeconds, MAX_GAME_SECONDS, OVERFLOW_THRESHOLD } from '../lib/scoring.js';
 
 const INITIAL_STATE = {
   beerLevel: 0,
@@ -29,7 +29,7 @@ export default function GameScreen({ challenge, onFinish }) {
   const lastFrameRef = useRef(null);
   const finishedRef = useRef(false);
 
-  const overflow = state.beerLevel + state.foamLevel > 100 || state.beerLevel > 96;
+  const overflow = state.beerLevel + state.foamLevel > OVERFLOW_THRESHOLD;
   const pourPercent = Math.min(100, state.beerLevel + state.foamLevel);
   const canLeft = getCanLeft(state);
 
@@ -45,7 +45,7 @@ export default function GameScreen({ challenge, onFinish }) {
       canLeft: getCanLeft(current),
       ...calculateScore(current, challenge),
     });
-  }, [onFinish]);
+  }, [onFinish, challenge]);
 
   useEffect(() => {
     function tick(timestamp) {
@@ -74,7 +74,7 @@ export default function GameScreen({ challenge, onFinish }) {
         return next;
       });
 
-      if (stateRef.current.elapsedSeconds >= MAX_GAME_SECONDS || stateRef.current.beerLevel > 108 || getCanLeft(stateRef.current) <= 0) {
+      if (stateRef.current.elapsedSeconds >= MAX_GAME_SECONDS || getCanLeft(stateRef.current) <= 0) {
         finish();
         return;
       }
@@ -90,6 +90,7 @@ export default function GameScreen({ challenge, onFinish }) {
     function handleKeyDown(event) {
       if (event.code !== 'Space' || event.repeat) return;
       event.preventDefault();
+      if (finishedRef.current) return;
       isPouringRef.current = true;
       setIsPouring(true);
     }
@@ -97,6 +98,7 @@ export default function GameScreen({ challenge, onFinish }) {
     function handleKeyUp(event) {
       if (event.code !== 'Space') return;
       event.preventDefault();
+      if (!isPouringRef.current) return;
       finish();
     }
 

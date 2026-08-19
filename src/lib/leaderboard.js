@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'nonsuch-perfect-pour-leaderboard';
+const STORAGE_KEY = 'veldra-perfect-pour-leaderboard';
 const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyFj59ZDPFjCgcS1amfRxVk68dl_xF6zs_9lBS7urAqAY2DaxMY2gXq_1RXwyXy1tod/exec';
 
 function readLocalScores() {

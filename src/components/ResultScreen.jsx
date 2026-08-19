@@ -3,12 +3,16 @@ import { formatSeconds } from '../lib/scoring.js';
 
 export default function ResultScreen({ result, challenge, onPlayAgain, onChangeLevel, onLeaderboard }) {
   async function shareResult() {
-    const text = `I scored ${result.score} in Nonsuch Perfect Pour. Can you beat me? https://mickhailov.github.io/nonsuch-perfect-pour/`;
-    if (navigator.share) {
-      await navigator.share({ title: 'Nonsuch Perfect Pour', text });
-      return;
+    const text = `I scored ${result.score} in Veldra Perfect Pour. Can you beat me? https://beergame.terrikonlabs.com/`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: 'Veldra Perfect Pour', text });
+        return;
+      }
+      await navigator.clipboard?.writeText(text);
+    } catch {
+      // user dismissed the share sheet or clipboard is unavailable
     }
-    await navigator.clipboard?.writeText(text);
   }
 
   return (

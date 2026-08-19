@@ -1,9 +1,9 @@
 export default function Glass({ beerLevel, foamLevel, challenge, pouring = false, overflow = false, compact = false }) {
-  const clampedBeer = Math.min(112, Math.max(0, beerLevel));
-  const clampedFoam = Math.min(34, Math.max(0, foamLevel));
+  const clampedBeer = Math.min(100, Math.max(0, beerLevel));
+  const clampedFoam = Math.min(22, Math.max(0, foamLevel));
   const fillHeight = Math.min(100, clampedBeer + clampedFoam);
-  const beerHeight = Math.min(100, clampedBeer);
-  const foamHeight = Math.min(22, clampedFoam);
+  const beerHeight = clampedBeer;
+  const foamHeight = clampedFoam;
   const beerY = 190 - beerHeight * 1.76;
   const foamY = Math.max(14, beerY - foamHeight * 1.76);
   const foamSvgHeight = Math.max(0, beerY - foamY);
@@ -69,7 +69,7 @@ export default function Glass({ beerLevel, foamLevel, challenge, pouring = false
 
         <path d="M48 14 C43 32 39 50 38 70 C36 105 45 139 61 166 C67 176 73 184 80 190 C87 184 93 176 99 166 C115 139 124 105 122 70 C121 50 117 32 112 14 C100 18 60 18 48 14 Z" className="svg-bowl-outline" />
         <ellipse cx="80" cy="15" rx="32" ry="4" className="svg-rim" />
-        <text x="80" y="88" textAnchor="middle" className="svg-glass-logo">NØNSUCH</text>
+        <text x="80" y="88" textAnchor="middle" className="svg-glass-logo">VELDRA</text>
         <path d="M112 36 C123 82 117 130 95 164" className="svg-highlight" />
         {overflow && <ellipse cx="80" cy="12" rx="39" ry="7" className="svg-overflow" />}
       </svg>

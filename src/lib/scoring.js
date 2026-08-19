@@ -1,17 +1,18 @@
 export const PERFECT_BEER_RANGE = [82, 88];
 export const PERFECT_FOAM_RANGE = [8, 14];
+export const OVERFLOW_THRESHOLD = 98;
 export const MAX_GAME_SECONDS = 18;
 
 const baseUrl = import.meta.env.BASE_URL || '/';
 
 export const CHALLENGES = [
   {
-    id: 'hazy-ipa',
-    name: 'Hazy IPA Pour',
-    beerName: 'Hazy IPA',
+    id: 'sunfall-haze',
+    name: 'Sunfall Haze Pour',
+    beerName: 'Sunfall Haze',
     difficulty: 'Easy',
     speedLabel: 'Very Slow Pour',
-    image: baseUrl + 'assets/hazy-ipa-can.webp',
+    image: baseUrl + 'assets/sunfall-haze-can.webp',
     beerColor: '#d98b18',
     beerLight: '#f2b84d',
     beerDark: '#9d4f08',
@@ -21,12 +22,12 @@ export const CHALLENGES = [
     beerTargetRange: [80, 90],
   },
   {
-    id: 'raspberry-sour',
-    name: 'Raspberry Sour Round',
-    beerName: 'Raspberry Sour',
+    id: 'crimson-thicket',
+    name: 'Crimson Thicket Round',
+    beerName: 'Crimson Thicket',
     difficulty: 'Medium',
     speedLabel: 'Moderate Pour',
-    image: baseUrl + 'assets/raspberry-sour-can.webp',
+    image: baseUrl + 'assets/crimson-thicket-can.webp',
     beerColor: '#b8263d',
     beerLight: '#dc5a67',
     beerDark: '#76111f',
@@ -36,12 +37,12 @@ export const CHALLENGES = [
     beerTargetRange: [82, 88],
   },
   {
-    id: 'baltic-porter',
-    name: 'Baltic Porter Trial',
-    beerName: 'Baltic Porter',
+    id: 'black-meridian',
+    name: 'Black Meridian Trial',
+    beerName: 'Black Meridian',
     difficulty: 'Hard',
     speedLabel: 'Very Fast Pour',
-    image: baseUrl + 'assets/baltic-porter-can.webp',
+    image: baseUrl + 'assets/black-meridian-can.webp',
     beerColor: '#6f3717',
     beerLight: '#9d5b2a',
     beerDark: '#2b1207',
@@ -63,7 +64,7 @@ function rangeAccuracy(value, [min, max], tolerance) {
 }
 
 export function getRating(score) {
-  if (score >= 95) return 'Nonsuch Perfect';
+  if (score >= 95) return 'Veldra Perfect';
   if (score >= 80) return 'Taproom Ready';
   if (score >= 60) return 'Almost There';
   return 'Foamy Disaster';
@@ -73,7 +74,7 @@ export function calculateScore({ beerLevel, foamLevel, elapsedSeconds }, challen
   const beerTargetRange = challenge.beerTargetRange || PERFECT_BEER_RANGE;
   const totalPoured = beerLevel + foamLevel;
 
-  if (totalPoured > 98) {
+  if (totalPoured > OVERFLOW_THRESHOLD) {
     return {
       score: 0,
       rating: 'Overflow Fail',

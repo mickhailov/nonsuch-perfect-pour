@@ -23,12 +23,12 @@ export default function StartScreen({ challenges, selectedChallenge, onSelectCha
         <div className="flex items-center justify-center gap-6">
           <div className="relative h-32 w-32 rounded-full border-2 border-gold/50 bg-parchment shadow-soft">
             <span className="absolute inset-0 flex items-center justify-center font-display text-8xl font-semibold italic">
-              N
+              V
             </span>
             <span className="absolute left-1/2 top-1/2 h-24 w-1 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-gold" />
           </div>
           <div className="text-left">
-            <p className="text-2xl font-semibold uppercase tracking-[0.28em] text-gold">Nonsuch</p>
+            <p className="text-2xl font-semibold uppercase tracking-[0.28em] text-gold">Veldra</p>
             <p className="text-lg uppercase tracking-[0.22em] text-charcoal/70">Perfect Pour</p>
           </div>
         </div>
@@ -96,9 +96,9 @@ export default function StartScreen({ challenges, selectedChallenge, onSelectCha
       </div>
 
       <footer className="mx-auto grid max-w-sm gap-2 text-sm leading-relaxed text-charcoal/65">
-        <p>Proudly pouring in Winnipeg, Manitoba</p>
+        <p>Proudly pouring at the Veldra Taproom</p>
         <p>For promotional entertainment only. No alcohol purchase required.</p>
-        <p className="text-xs text-charcoal/45">v0.3.2</p>
+        <p className="text-xs text-charcoal/45">v0.4.0</p>
       </footer>
     </section>
   );
