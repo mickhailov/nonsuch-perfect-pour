@@ -25,6 +25,16 @@ The production build is generated in `dist/`.
 npm run preview
 ```
 
+## Прод — beergame.terrikonlabs.com
+
+Игра (Veldra Perfect Pour) живёт на **https://beergame.terrikonlabs.com** — статика на
+Terrikon VPS `149.56.97.164` (OVH, ssh `terrikon-vps`, ключ `~/.ssh/terrikon-deploy`),
+файлы в `/var/www/terrikon-clients/beergame/` (владелец `terrikon-hub:www-data`), отдаёт
+wildcard-vhost `terrikon-clients`. Деплой: `npm run build` → rsync `dist/` в эту папку
+одной ssh-сессией (порт 22 банится за серию подключений) — процедура в
+`~/Documents/TerrikonLabs/docs/DEPLOY.md`, карта серверов — `~/Documents/Servers.md`.
+Разделы Netlify/Vercel ниже — запасные варианты, сейчас не используются.
+
 ## Deploy to Netlify
 
 1. Push this project to a Git repository.
